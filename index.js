@@ -7,6 +7,9 @@ TASK 1 🚀
 // The customer would like to see the topping options, console log out each of the toppings one by one in the array above 
 */
 
+toppings.forEach (function(item) {
+    console.log(item);
+});
 
 /*
 TASK 2 🚀
@@ -14,7 +17,14 @@ TASK 2 🚀
 for example you no longer have any onions and need to remove it from the list of toppings
 Use .forEach() - hint - you will need to include the index in the callback
  */
-
+function foodRemover(arr, item) {
+    const removed = arr.filter(food => {
+      return food!= item
+    })
+     return removed;
+  }
+  
+  foodRemover(toppings, "Tomatoes")
 
 
 /*
@@ -22,8 +32,8 @@ TASK 3 🚀
 // Sort the topping alphabetically and return them in a new array 
 */
 
-
-
+toppings.sort();
+console.log(toppings)
 
 const vacations = [
     {city: 'Toronto', country: 'Canada', region: 'North America', temperature: 86, beach: true, sea: false, wifi:'strong', hiking: false, overall_rating: 6,},
@@ -43,20 +53,32 @@ TASK 4 🚀
 // The travel agent would like to send a couple on their honeymoon to a location with a beach and a temperature above 90 degrees. return their options in a new array 
 */
 
-
+const vacationFinder = vacations.filter((item) => {
+    return item.beach == true && item.temperature >= 90
+  });
+  
+  console.log(vacationFinder)
 
 /*
 TASK 5 🚀
 // A developer decides to become a digital nomad for a year, they would like to live in a place with strong wifi, a beach, and good hiking, return their options
 */
 
-
+const digitalNomad = vacations.filter((item) => {
+    return item.wifi == 'strong' && item.beach == true && item.hiking == true
+  });
+  
+  console.log(digitalNomad)
 
 /* 
 TASK 6 🚀
 // write a function that allows a user to sort their vacations by hiking opportunities, beach access or a mix of both and return their options
 */
 
+const opportunities = vacations.map((item) => {
+    return `${item.city} Beach is available: ${item.beach}, Hiking is available: ${item.hiking}`
+});
+console.log(opportunities);
 
 
 /* 
@@ -65,6 +87,11 @@ TASK 7 🚀
 hint - use .reduce()
 */
 
+const rating = vacations.reduce((acc, item) => {
+    return acc + item.overall_rating;
+}, 0)
+
+console.log(rating/vacations.length)
 
 /*
 TASK 8 🚀
@@ -72,3 +99,28 @@ Find the airport codes for each of the cities in the vacation array and write a 
 hint - your function should include array, index and code as parameters
 you will need to invoke the function each time you wish to add a new code
 */
+
+function codeAdder(arr, index, code) {
+    return {
+    city: arr[index].city,
+    country: arr[index].country,
+    region: arr[index].region,
+    temperature: arr[index].temperature, 
+    beach: arr[index].beach,
+    sea: arr[index].sea,
+    wifi:arr[index].wifi,
+    hiking: arr[index].hiking, 
+    overall_rating: arr[index].overall_rating,
+    code: code}
+  }
+  
+  codeAdder(vacations, 0, 'YYZ');
+  codeAdder(vacations, 1, 'MIA');
+  codeAdder(vacations, 2, 'TLV');
+  codeAdder(vacations, 3, 'IST');
+  codeAdder(vacations, 4, 'BKK');
+  codeAdder(vacations, 5, 'LIM');
+  codeAdder(vacations, 6, 'MCT');
+  codeAdder(vacations, 7, 'SYD');
+  codeAdder(vacations, 8, 'CPT');
+  codeAdder(vacations, 9, 'CUN');
